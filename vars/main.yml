@@ -1,0 +1,7 @@
+---
+# vars file for java
+#java version for RedHat
+php: php56
+
+#java version for Debian
+php_version: 5.6

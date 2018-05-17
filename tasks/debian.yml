@@ -1,0 +1,22 @@
+---
+# Setup PHP on System
+
+- name: Install python-properties
+  apt: name=python-software-properties state=latest
+
+# Adding PHP repository
+- name: Add PHP Repository
+  apt_repository: repo='ppa:ondrej/php'
+
+# Updating cache
+#- name: Update apt cache if repository just added.
+#  apt: update_cache=yes
+
+# Installing PHP
+- name: Install PHP 
+  apt: name={{item}} state=installed
+  with_items:
+    - "php{{php_version}}"
+# Install PHP-FPM
+- name: Install PHP_FPM
+  apt: name="php{{php_version}}-fpm" state=present

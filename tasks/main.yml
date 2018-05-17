@@ -1,0 +1,14 @@
+---
+# tasks file for PHP
+- name: To install PHP on RedHat
+  include_tasks: redhat.yml
+  become: true
+  when:
+    ansible_os_family == 'RedHat'
+
+- name: To install PHP on Debian
+  include_tasks: debian.yml
+  become: true
+  when:
+    ansible_os_family == 'Debian'
+

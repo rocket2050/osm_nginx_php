@@ -1,0 +1,21 @@
+---
+# Setup PHP on System
+
+#- name: Install python-properties
+#  apt: name=python-software-properties state=latest
+
+# Adding PHP repository
+- name: Add PHP repo
+  copy: src=remi.repo dest=/etc/yum.repos.d/remi.repo
+
+# Enable repo for PHP
+- name: enable remi-php
+  shell: yum-config-manager --enable remi-php{{php}}
+
+# Installing PHP
+- name: Install PHP 
+  yum: name={{item}} state=installed
+  with_items:
+    - php-fpm
+    - php 
+    - php-devel
