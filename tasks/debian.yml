@@ -13,10 +13,27 @@
 #  apt: update_cache=yes
 
 # Installing PHP
-- name: Install PHP 
+- name: Install PHP
   apt: name={{item}} state=installed
   with_items:
-    - "php{{php_version}}"
-# Install PHP-FPM
-- name: Install PHP_FPM
-  apt: name="php{{php_version}}-fpm" state=present
+    - "php{{php_version}}-fpm"
+# remove apache
+- name: remove apache2
+  apt: name=apache2 state=absent
+
+#install nginx
+- name: install nginx
+  apt: name=nginx state=installed
+   
+
+- name: config php
+  shell: echo "cgi.fix_pathinfo=0" >> /etc/php/{{php_version}}/fpm/php.ini
+  notify:
+    - restart php{{php_version}}-fpm
+
+# Config php-fpm for apache
+- name: configure php-fpm
+  template: src=default.conf.j2 dest=/etc/nginx/sites-available/default
+  notify:
+    - restart nginx
+- shell: echo '<?php phpinfo(); ?>' > /usr/share/nginx/html/info.php

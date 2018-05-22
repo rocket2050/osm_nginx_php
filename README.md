@@ -1,4 +1,4 @@
-Osm_PHP
+Osm_Nginx_PHP
 =========
 
 Ansible role of PHP and php-fpm for RedHat and Debian Family. By default this will install and configure php version 5.6.
@@ -33,7 +33,7 @@ eg: ansible-playbook --extra-vars php_version=7.1 site.yml
 
 Role Variables
 --------------
-The role variables are in [vars](https://github.com/opstree-ansible/osm_php/blob/master/vars/main.yml)
+The role variables are in [vars](https://github.com/opstree-ansible/osm_nginx_php/blob/master/vars/main.yml)
 
 Dependencies
 ------------
@@ -47,11 +47,5 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: "{{ hosts }}"
       roles:
-         - { role: osm_php }
+         - { role: osm_nginx_php }
 
-Note
---------
-
-* By default php mudule install apache2 and httpd in respected operation system.
-* Configuring php with web-server is not in this role. 
-* Configure it based on the web-server you want to use. 

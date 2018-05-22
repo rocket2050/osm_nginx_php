@@ -1,4 +1,5 @@
 ---
 - hosts: all
+  become: yes
   roles:
-    - osm_php
+    - osm_nginx_php
