@@ -48,4 +48,6 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: "{{ hosts }}"
       roles:
          - { role: osm_nginx_php }
-
+Verify
+------
+http://ip/info.php
